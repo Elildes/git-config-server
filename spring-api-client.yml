@@ -1,0 +1,3 @@
+spring-api-client:
+      minimum=9
+      maximim=100
