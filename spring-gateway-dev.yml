@@ -1,0 +1,27 @@
+spring:
+  cloud:
+    loadbalancer:
+      ribbon:
+      enabled: false
+    gateway:
+      routes:
+        - id: cliente-route
+          uri: lb://SERVICECLIENT
+          predicates:
+            - Path=/cliente/**
+        - id: gateway-route
+          uri: lb://SERVICEGATEWAY
+          predicates:
+            - Path=/gateway/**
+        - id: banco-route
+          uri: lb://jdbc:h2:mem:banco-cliente
+          predicates:
+            - Path=/h2/**
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/           
