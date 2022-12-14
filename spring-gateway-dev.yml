@@ -1,14 +1,18 @@
 spring:
+
   cloud:
+  
     loadbalancer:
       ribbon:
       enabled: false
+    
     gateway:
+    
       routes:
       - id: cliente-route
         uri: lb://SERVICECLIENT
         predicates:
-        - Path=/cliente/**          
+        - Path=/cliente/**
       - id: gateway-route
         uri: lb://SERVICEGATEWAY
         predicates:
@@ -17,7 +21,19 @@ spring:
         uri: lb://jdbc:h2:mem:banco-cliente
         predicates:
         - Path=/h2/**
-
+           
+      default-filters:
+      - name: Retry
+        args:
+          retries: 4
+          methods: GET, POST
+          series: SERVER_ERROR
+          exceptions: java.io.IOException
+          backoff:
+            firstBackoff: 50ms
+            maxBackoff: 3000ms
+            factor: 2
+            basedOnPreviousValue: false 
 eureka:
   instance:
     prefer-ip-address: true
