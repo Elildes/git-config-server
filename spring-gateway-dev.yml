@@ -5,18 +5,19 @@ spring:
       enabled: false
     gateway:
       routes:
-        - id: cliente-route
-          uri: lb://SERVICECLIENT
-          predicates:
-            - Path=/cliente/**
-        - id: gateway-route
-          uri: lb://SERVICEGATEWAY
-          predicates:
-            - Path=/gateway/**
-        - id: banco-route
-          uri: lb://jdbc:h2:mem:banco-cliente
-          predicates:
-            - Path=/h2/**
+      - id: cliente-route
+        uri: lb://SERVICECLIENT
+        predicates:
+        - Path=/cliente/**          
+      - id: gateway-route
+        uri: lb://SERVICEGATEWAY
+        predicates:
+        - Path=/gateway/**
+      - id: banco-route
+        uri: lb://jdbc:h2:mem:banco-cliente
+        predicates:
+        - Path=/h2/**
+
 eureka:
   instance:
     prefer-ip-address: true
