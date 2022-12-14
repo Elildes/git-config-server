@@ -42,7 +42,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: gateway
+        include: "*"
 
 eureka:
   instance:
