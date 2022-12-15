@@ -17,23 +17,27 @@ spring:
     
       routes:
       - id: cliente-route
-        uri: http://localhost:8760/cliente
+        uri: lb://service-client
         predicates:
         - Path=/cliente/**
       - id: venda-route
-        uri: http://localhost:8760/vendas
+        uri: lb://service-vendas
         predicates:
         - Path=/vendas/**                
       - id: payment-route
-        uri: http://localhost:8760/payment
+        uri: lb://service-payment
         predicates:
         - Path=/payment/** 
+      - id: eureka-route
+        uri: http://localhost:8761
+        predicates:
+        - Path=/eureka/**
       - id: gateway-route
-        uri: http://localhost:8760/gateway
+        uri: lb://service-gateway
         predicates:
         - Path=/gateway/**
       - id: banco-route
-        uri: http://jdbc:h2:mem:banco-cliente
+        uri: lb://jdbc:h2:mem:banco-cliente
         predicates:
         - Path=/h2/**
            
