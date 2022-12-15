@@ -51,4 +51,10 @@
         - org.springframework.web.client.ResourceAccessException
         - java.lang.RuntimeException
  
-        
+    thread-pool-bulkhead:
+      instances:
+        bulkheadpayment:
+          maxThreadPoolSize: 10
+          coreThreadPoolSize: 2
+          queueCapacity: 20
+ 
