@@ -10,15 +10,15 @@ spring:
     
       routes:
       - id: cliente-route
-        uri: lb://SERVICECLIENT
+        uri: lb://service-client
         predicates:
         - Path=/cliente/**
       - id: venda-route
-        uri: lb://SERVICEVENDAS
+        uri: lb://service-vendas
         predicates:
         - Path=/vendas/**                
       - id: gateway-route
-        uri: lb://SERVICEGATEWAY
+        uri: lb://service-gateway
         predicates:
         - Path=/gateway/**
       - id: banco-route
