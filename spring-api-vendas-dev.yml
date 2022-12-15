@@ -34,3 +34,21 @@
       fetch-registry: true
       service-url:
         defaultZone: http://localhost:8761/eureka/
+
+  resilience4j:
+    circuitbreaker:
+      payment:
+      registerHealthIndicator: true
+      ringBufferSizeInClosedState: 5
+      ringBufferSizeInHalfOpenState: 3
+      waitDurationInOpenState: 10s
+      failureRateThreshold: 5
+      recordExceptions:
+        - org.springframework.web.client.HttpServerErrorException
+        - java.io.IOException
+        - java.lang.IllegalStateException
+        - java.util.concurrent.Timeout.Exception
+        - org.springframework.web.client.ResourceAccessException
+        - java.lang.RuntimeException
+ 
+        
