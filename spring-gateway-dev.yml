@@ -17,6 +17,10 @@ spring:
         uri: lb://service-vendas
         predicates:
         - Path=/vendas/**                
+      - id: payment-route
+        uri: lb://service-payment
+        predicates:
+        - Path=/payment/** 
       - id: gateway-route
         uri: lb://service-gateway
         predicates:
