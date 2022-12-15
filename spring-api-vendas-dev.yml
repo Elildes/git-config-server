@@ -47,7 +47,7 @@
         - org.springframework.web.client.HttpServerErrorException
         - java.io.IOException
         - java.lang.IllegalStateException
-        - java.util.concurrent.Timeout.Exception
+        - java.util.concurrent.TimeoutException
         - org.springframework.web.client.ResourceAccessException
         - java.lang.RuntimeException
  
@@ -58,3 +58,12 @@
           coreThreadPoolSize: 2
           queueCapacity: 20
  
+    retry:
+      instances:
+        retryPaymentService:
+          maxRetryAttemps: 10
+          waitDuration: 3000
+          retry-exceptions:
+            - java.util.concurrent.TimeoutException
+            - java.net.ConncetException
+   
