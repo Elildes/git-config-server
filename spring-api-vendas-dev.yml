@@ -69,4 +69,16 @@
           retry-exceptions:
             - java.util.concurrent.TimeoutException
             - java.net.ConncetException
-   
+
+  management:
+    health:
+      circuitbreaker:
+        enable: true
+    endpoints:
+      web:
+        exposure:
+          include: "*"
+    endpoint:
+      health:
+        show-details: always
+  
